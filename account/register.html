@@ -4,28 +4,60 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/styles-nav-footer.css" rel="stylesheet" />
-        <meta name="description" content="Home page for pawfect" />
-        <title>Pawfect</title>
+        <link href="/css/styles-nav-footer.css" rel="stylesheet" />
+        <link href="/css/register.css" rel="stylesheet" />
+        <link rel="icon" href="/images/faviconpawfect.png.ico" type="favicon.pawfects"/>
+        <script defer src="js/register.js"></script>
+        <meta name="description" content="Register new admin account page" />
+        <title>Register new admin</title>
     </head>
     <body>
         <header>
         <nav class="nav-buttons-main">
             <ul class="nav-buttons">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="post/index.html">Blog Posts</a></li>
-                <li><a href="account/login.html">Log in</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blogposts.html">Blog Posts</a></li>
+            <li><a href="account/login.html">Log in</a></li>
             </ul>
         </nav>
         </header>
         <main>
+            <h1>PAWFECT</h1>
+            <div class="container">
+                <h2>Registration Form</h2>
+                <form id="registrationForm" onsubmit="return validateForm()">
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    required
+                />
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                />
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                />
+                <input type="submit" value="Register" />
+                </form>
+                <div id="errorMessages" class="error-message"></div>
+            </div>
         </main>
         <footer>
-            <a href="#faq">FAQ</a>
-            <a href="#terms">Terms and Conditions</a>
-            <a href="#contact">Contact</a>
-            <a href="#social-media">Follow Us on Social Media</a>
-            <a href="#about">About Us</a>
+        <a href="#faq">FAQ</a>
+        <a href="#terms">Terms and Conditions</a>
+        <a href="#contact">Contact</a>
+        <a href="#social-media">Follow Us on Social Media</a>
+        <a href="#about">About Us</a>
         </footer>
     </body>
 </html>

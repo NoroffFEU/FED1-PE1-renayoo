@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('https://cdn.pixabay.com/photo/2022/04/02/05/50/pet-7106365_1280.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+h1 {
+    color: white;
+    text-shadow: black;
+    text-align: center;
+}
+
+.container {
+    width: 300px;
+    margin: 50px auto;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px 0;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+.error-message {
+    color: red;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

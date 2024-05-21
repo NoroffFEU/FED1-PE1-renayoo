@@ -1,6 +1,6 @@
 const postsContainer = document.getElementById('posts-container');
 
-// Function to create post elements
+// Function to display blog posts
 function createPostElement(post) {
     const postDiv = document.createElement('div');
     postDiv.classList.add('post');
@@ -22,7 +22,11 @@ function createPostElement(post) {
     image.src = post.media.url;
     image.alt = post.media.alt;
 
-    postDiv.appendChild(image);
+    const imageLink = document.createElement('a');
+    imageLink.href = `/post/index.html?id=${post.id}`;
+    imageLink.appendChild(image);
+
+    postDiv.appendChild(imageLink);
     postDiv.appendChild(title);
     postDiv.appendChild(bodySnippet);
     postDiv.appendChild(readMoreButton);
@@ -30,9 +34,7 @@ function createPostElement(post) {
     return postDiv;
 }
 
-
-
-// Fetch data from API
+// Fetching data from API
 async function fetchData() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/poppy');
@@ -45,8 +47,9 @@ async function fetchData() {
         });
     } catch (error) {
         console.error('Error fetching data:', error);
+        displayError('Cannot fetch blog posts.');
     }
 }
 
 // Call the fetchData function to retrieve and display posts
-fetchData();
+fetchData()

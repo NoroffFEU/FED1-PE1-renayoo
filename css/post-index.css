@@ -1,0 +1,78 @@
+body {
+    background: url(https://cdn.pixabay.com/photo/2020/10/12/14/11/meadow-5648849_1280.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.blogDetailsID-container {
+    background-color: white;
+    margin: 20px;
+    justify-content: center;
+    width: auto;
+    border-radius: 10px;
+    opacity: 93%;
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 5px;
+    font-size: 30px;
+
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 30px;
+    margin: 0;
+    flex-grow: 1;
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+p {
+    padding: 20px;
+    font-size: 20px;
+}
+
+.post-body {
+    margin: 30px;
+    line-height: 1.5;
+}
+
+.post {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.title-meta-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.post-meta {
+    text-align: right;
+}
+
+.post-author,
+.post-created-date,
+.post-updated-date {
+    margin: 0;
+}
+
+.post-author {
+    font-weight: bold;
+}
+
+.post-created-date,
+.post-updated-date {
+    font-size: 0.9em;
+    color: #777;
+}

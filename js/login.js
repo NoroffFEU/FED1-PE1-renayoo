@@ -10,7 +10,7 @@ async function login(email, password) {
         });
 
         if (!response.ok) {
-            throw new Error('Invalid credentials');
+            throw new Error('Wrong username or password');
         }
 
         const data = await response.json();
@@ -44,7 +44,7 @@ async function login(email, password) {
 }
 
 // Check if the user is already logged in
-window.onload = function() {
+window.onload = function () {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
         // If access token is available, show logged-in message
@@ -53,11 +53,16 @@ window.onload = function() {
         document.getElementById('success-message').textContent = 'You are already logged in. You can edit posts or register a new admin.';
         document.getElementById('success-message').style.color = 'black';
         document.getElementById('register-button-logged-in').style.display = 'block';
+    } else {
+        // If no access token is available, hide logged-in message
+        document.getElementById('login-success-container').style.display = 'none';
+        document.getElementById('logged-in-message').style.display = 'none';
+        document.getElementById('register-button-logged-in').style.display = 'none';
     }
 };
 
 // Event listener for login form submission
-document.getElementById('login-form').addEventListener('submit', function(event) {
+document.getElementById('login-form').addEventListener('submit', function (event) {
     event.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -66,10 +71,10 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     login(email, password);
 });
 
-// Function to log out the user
+// Log out the user - remove access token
 function logout() {
     // Remove the authentication token from local storage
     localStorage.removeItem('accessToken');
     // Redirect the user to the login page
-    window.location.href = 'login.html'; // Replace 'login.html' with the actual login page URL
+    window.location.href = 'login.html';
 }

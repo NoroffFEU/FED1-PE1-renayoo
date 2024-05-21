@@ -1,12 +1,12 @@
 // Function to handle login
-    async function login(name, password) {
-        try {
+async function login(email, password) {
+    try {
         const response = await fetch('https://v2.api.noroff.dev/auth/login', {
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, password })
+            body: JSON.stringify({ email, password })
         });
 
         if (!response.ok) {
@@ -19,38 +19,57 @@
         // Save token to local storage
         localStorage.setItem('accessToken', accessToken);
 
+
+        // Hide login container and show logged-in message
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('logged-in-message').style.display = 'block';
+
         // Display success message
-        document.getElementById('success-message').textContent = 'You have logged in. You can edit posts or register a new admin.';
-        document.getElementById('error-message').textContent = '';
+        const successMessage = document.getElementById('success-message');
+        successMessage.textContent = 'You have now logged in. You can edit posts or register a new admin.';
+        successMessage.style.color = 'black';
 
         // Show register button
-        document.getElementById('register-button').style.display = 'block';
-        } catch (error) {
-          // Display error message
-        document.getElementById('error-message').textContent = error.message;
-        document.getElementById('success-message').textContent = '';
+        document.getElementById('register-button-logged-in').style.display = 'block';
+    } catch (error) {
+        // Display error message
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.textContent = error.message;
+        errorMessage.style.color = 'red';
 
-        // Hide register button on login failure
-        document.getElementById('register-button').style.display = 'none';
-        }
+        // Hide logged-in message
+        document.getElementById('logged-in-message').style.display = 'none';
+        document.getElementById('register-button-logged-in').style.display = 'none';
     }
+}
 
-    // Check if the user is already logged in
-    window.onload = function() {
-        const accessToken = localStorage.getItem('accessToken');
-        if (accessToken) {
-        // If access token is available, show register button and success message
-        document.getElementById('register-button').style.display = 'block';
+// Check if the user is already logged in
+window.onload = function() {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+        // If access token is available, show logged-in message
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('logged-in-message').style.display = 'block';
         document.getElementById('success-message').textContent = 'You are already logged in. You can edit posts or register a new admin.';
-        }
-    };
+        document.getElementById('success-message').style.color = 'black';
+        document.getElementById('register-button-logged-in').style.display = 'block';
+    }
+};
 
-    // Event listener for login form submission
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const name = document.getElementById('name').value;
-        const password = document.getElementById('password').value;
+// Event listener for login form submission
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-        // Call login function with name and password
-        login(name, password);
-    });
+    // Call login function with email and password
+    login(email, password);
+});
+
+// Function to log out the user
+function logout() {
+    // Remove the authentication token from local storage
+    localStorage.removeItem('accessToken');
+    // Redirect the user to the login page
+    window.location.href = 'login.html'; // Replace 'login.html' with the actual login page URL
+}

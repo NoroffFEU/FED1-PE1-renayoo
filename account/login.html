@@ -7,7 +7,11 @@
     <link href="/css/styles-nav-footer.css" rel="stylesheet" />
     <link href="/css/login.css" rel="stylesheet" />
     <script defer src="/js/login.js"></script>
-    <link rel="icon" href="/images/faviconpawfect.png.ico" type="favicon.pawfects" />
+    <link
+      rel="icon"
+      href="/images/faviconpawfect.png.ico"
+      type="favicon.pawfects"
+    />
     <meta name="description" content="Log in page for admins of Pawfect" />
     <title>Admin log in</title>
   </head>
@@ -23,16 +27,35 @@
     </header>
     <main>
       <h1>PAWFECT</h1>
-      <div class="login-container">
+      <div class="login-container" id="login-container">
         <h2>Login</h2>
-        <form id="login-form">
-          <input type="text" id="name" placeholder="Name" />
+        <form id="login-form" method="post" action="/auth/login">
+          <input type="email" id="email" placeholder="Email" />
           <input type="password" id="password" placeholder="Password" />
           <input type="submit" value="Login" />
         </form>
-        <p id="error-message" style="color: red;"></p>
-        <p id="success-message" style="color: green;"></p>
-        <button id="register-button" style="display: none;" onclick="window.location.href='register.html'">Register</button>
+        <p id="error-message" style="color: red"></p>
+        <button
+          id="register-button"
+          onclick="window.location.href='register.html'"
+          style="display: none"
+        >
+          Register
+        </button>
+      </div>
+      <div class="login-success-container">
+        <div id="logged-in-message" style="display: none">
+          <p id="success-message" style="color: green"></p>
+          <div class="button-container">
+            <button
+              id="register-button-logged-in"
+              onclick="window.location.href='register.html'"
+            >
+              New Admin? Register Here
+            </button>
+            <button id="logout-button" onclick="logout()">Logout</button>
+          </div>
+        </div>
       </div>
     </main>
     <footer>

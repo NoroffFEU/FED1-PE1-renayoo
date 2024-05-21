@@ -4,10 +4,15 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="css/styles.css" rel="stylesheet" />
-        <link href="/css/styles-nav-footer.css" rel="stylesheet" />
-        <link href="/css/blogposts.css" rel="stylesheet" />
-        <link rel="icon" href="images/faviconpawfect.png.ico" type="favicon.pawfects"/>
+        <link href="css/styles-nav-footer.css" rel="stylesheet" />
+        <link href="css/blogposts.css" rel="stylesheet" />
+        <link
+        rel="icon"
+        href="images/faviconpawfect.png.ico"
+        type="favicon.pawfects"
+        />
         <script defer src="js/index.js"></script>
+        <script defer src="js/blogposts.js"></script>
         <meta name="description" content="Blog post page for pawfect" />
         <title>Pawfect posts!</title>
     </head>
@@ -22,12 +27,14 @@
         </nav>
         </header>
         <main>
-        <h3 class="Blogs">Blogs</h3>
-        <div class="static-latest-posts">
-            <div class="background-overlay">
-            <div class="api-post-list">List for the all posts</div>
-            </div>
-            <div class="background-image"></div>
+            <div class="static-latest-posts">
+                <div class="posts-container">
+                        <div class="background-overlay">
+                        <h3 class="allblogs">All Blogs</h3>
+                    <ul id="posts-container"></ul>
+                </div>
+                <div class="background-image">
+                </div>
         </div>
         </main>
         <footer>

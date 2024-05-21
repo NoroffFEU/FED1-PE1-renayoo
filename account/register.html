@@ -7,7 +7,7 @@
         <link href="/css/styles-nav-footer.css" rel="stylesheet" />
         <link href="/css/register.css" rel="stylesheet" />
         <link rel="icon" href="/images/faviconpawfect.png.ico" type="favicon.pawfects"/>
-        <script defer src="js/register.js"></script>
+        <script defer src="/js/register.js"></script>
         <meta name="description" content="Register new admin account page" />
         <title>Register new admin</title>
     </head>
@@ -25,29 +25,32 @@
             <h1>PAWFECT</h1>
             <div class="container">
                 <h2>Registration Form</h2>
-                <form id="registrationForm" onsubmit="return validateForm()">
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Name"
-                    required
-                />
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                />
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                />
-                <input type="submit" value="Register" />
+                <form id="registrationForm" method="post" action="/auth/register">
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Name"
+                        required pattern="^[\w]+$"
+                        title="Name must only contain lowercase and uppercase letters, numbers and underscore(_). Example My_Name"
+                    />
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="E-mail"
+                        required patterns="^[\w\-.]+@(stud\.)?noroff\.no$"
+                        title="Only @(stud.noroff.no) domains are allowed to register"
+                        />
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Password"
+                        required minLength="8"
+                        title="Password must be at least 8 characters"
+                    />
+                    <input type="submit" value="Register" />
                 </form>
                 <div id="errorMessages" class="error-message"></div>
             </div>

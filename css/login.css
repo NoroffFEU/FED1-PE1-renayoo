@@ -12,6 +12,8 @@ h1 {
     color: white;
     text-shadow: black;
     text-align: center;
+    font-weight: 600;
+    text-shadow: rgb(0, 0, 0) 1px 0 3px;
 }
 
 .login-container {
@@ -22,11 +24,13 @@ h1 {
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
+
 .login-container h2 {
     text-align: center;
     margin-bottom: 20px;
 }
-.login-container input[type="text"],
+
+.login-container input[type="email"],
 .login-container input[type="password"] {
     width: 100%;
     padding: 10px;
@@ -35,6 +39,7 @@ h1 {
     border-radius: 5px;
     box-sizing: border-box;
 }
+
 .login-container input[type="submit"],
 .login-container input[type="button"] {
     width: 100%;
@@ -46,9 +51,44 @@ h1 {
     cursor: pointer;
     margin: 5px;
 }
+
 .login-container input[type="submit"]:hover,
 .login-container input[type="button"]:hover {
     background-color: #45a049;
+}
+
+.login-success-container {
+    width: 400px;
+    margin: 100px auto;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#success-message {
+    text-align: center;
+    font-size: 20px;
+}
+
+#register-button-logged-in,
+#logout-button {
+    width: 300px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 18px;
 }
 
 footer {

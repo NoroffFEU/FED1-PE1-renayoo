@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (response.ok) {
                 console.log('Post updated successfully');
-                window.location.href = `/post/index.html?id=${postId}`;
+                window.location.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${postId}`;
             } else {
                 console.error('Failed to update post', await response.json());
             }

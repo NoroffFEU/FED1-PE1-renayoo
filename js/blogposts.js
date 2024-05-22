@@ -15,7 +15,7 @@ function createPostElement(post) {
     readMoreButton.textContent = 'Read More';
     readMoreButton.classList.add('read-more');
     readMoreButton.addEventListener('click', () => {
-        window.location.href = `post/index.html?id=${post.id}`;
+        window.location.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${post.id}`;
     });
 
     const image = document.createElement('img');
@@ -23,7 +23,7 @@ function createPostElement(post) {
     image.alt = post.media.alt;
 
     const imageLink = document.createElement('a');
-    imageLink.href = `post/index.html?id=${post.id}`;
+    imageLink.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${post.id}`;
     imageLink.appendChild(image);
 
     postDiv.appendChild(imageLink);
@@ -67,7 +67,7 @@ function createPostElement(post) {
         editButton.textContent = 'Edit';
         editButton.classList.add('edit-post');
         editButton.addEventListener('click', () => {
-            window.location.href = `/post/edit.html?id=${post.id}`;
+            window.location.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/edit.html?id=${post.id}`;
         });
 
         postDiv.appendChild(editButton);

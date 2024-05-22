@@ -23,7 +23,7 @@ fetch('https://v2.api.noroff.dev/blog/posts/poppy')
         const posts = responseData.data.slice(0, 3); 
         posts.forEach((post, index) => {
             imgs[index].src = post.media.url;
-            links[index].href = `post/index.html?id=${post.id}`;
+            links[index].href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${post.id}`;
             captions[index].textContent = post.title;
             links[index].textContent = "Read More";
         });

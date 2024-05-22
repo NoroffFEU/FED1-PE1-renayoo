@@ -15,7 +15,7 @@ function createPostElement(post) {
     readMoreButton.textContent = 'Read More';
     readMoreButton.classList.add('read-more');
     readMoreButton.addEventListener('click', () => {
-        window.location.href = `/post/index.html?id=${post.id}`;
+        window.location.href = `post/index.html?id=${post.id}`;
     });
 
     const image = document.createElement('img');
@@ -23,7 +23,7 @@ function createPostElement(post) {
     image.alt = post.media.alt;
 
     const imageLink = document.createElement('a');
-    imageLink.href = `/post/index.html?id=${post.id}`;
+    imageLink.href = `post/index.html?id=${post.id}`;
     imageLink.appendChild(image);
 
     postDiv.appendChild(imageLink);

@@ -13,25 +13,26 @@
     </head>
     <body>
         <header>
-        <nav class="nav-buttons-main">
-            <ul class="nav-buttons">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blogposts.html">Blog Posts</a></li>
-            <li><a href="account/login.html">Log in</a></li>
-            </ul>
-        </nav>
+            <nav class="nav-buttons-main">
+                <ul class="nav-buttons">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/blogposts.html">Blog Posts</a></li>
+                    <li><a href="/account/login.html">Log in</a></li>
+                </ul>
+            </nav>
         </header>
         <main>
             <h1>PAWFECT</h1>
             <div class="container">
                 <h2>Registration Form</h2>
-                <form id="registrationForm" method="post" action="/auth/register">
+                <form id="registrationForm">
                     <input
                         type="text"
                         id="name"
                         name="name"
                         placeholder="Name"
-                        required pattern="^[\w]+$"
+                        required
+                        pattern="^[\w]+$"
                         title="Name must only contain lowercase and uppercase letters, numbers and underscore(_). Example My_Name"
                     />
                     <input
@@ -39,28 +40,31 @@
                         id="email"
                         name="email"
                         placeholder="E-mail"
-                        required patterns="^[\w\-.]+@(stud\.)?noroff\.no$"
+                        required
+                        pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
                         title="Only @(stud.noroff.no) domains are allowed to register"
-                        />
+                    />
                     <input
                         type="password"
                         id="password"
                         name="password"
                         placeholder="Password"
-                        required minLength="8"
+                        required
+                        minlength="8"
                         title="Password must be at least 8 characters"
                     />
                     <input type="submit" value="Register" />
                 </form>
                 <div id="errorMessages" class="error-message"></div>
+                <div id="successMessages" class="success-message"></div>
             </div>
         </main>
         <footer>
-        <a href="#faq">FAQ</a>
-        <a href="#terms">Terms and Conditions</a>
-        <a href="#contact">Contact</a>
-        <a href="#social-media">Follow Us on Social Media</a>
-        <a href="#about">About Us</a>
+            <a href="#faq">FAQ</a>
+            <a href="#terms">Terms and Conditions</a>
+            <a href="#contact">Contact</a>
+            <a href="#social-media">Follow Us on Social Media</a>
+            <a href="#about">About Us</a>
         </footer>
     </body>
 </html>

@@ -31,6 +31,49 @@ function createPostElement(post) {
     postDiv.appendChild(bodySnippet);
     postDiv.appendChild(readMoreButton);
 
+    // Check if user is logged in
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-post');
+        deleteButton.addEventListener('click', async () => {
+            try {
+                const accessToken = localStorage.getItem('accessToken');
+                if (!accessToken) {
+                    throw new Error('User is not logged in');
+                }
+
+                const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    postDiv.remove();
+                    console.log('Post deleted successfully');
+                } else {
+                    const errorMessage = await response.text();
+                    console.error('Failed to delete post:', errorMessage);
+                }
+            } catch (error) {
+                console.error('Error deleting post:', error);
+            }
+        });
+
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.classList.add('edit-post');
+        editButton.addEventListener('click', () => {
+            window.location.href = `/post/edit.html?id=${post.id}`;
+        });
+
+        postDiv.appendChild(editButton);
+        postDiv.appendChild(deleteButton);
+    }
+
     return postDiv;
 }
 
@@ -52,4 +95,5 @@ async function fetchData() {
 }
 
 // Call the fetchData function to retrieve and display posts
-fetchData()
+fetchData();
+

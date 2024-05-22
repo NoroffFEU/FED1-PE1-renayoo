@@ -1,36 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="/css/styles-nav-footer.css" rel="stylesheet" />
-        <link href="/css/edit.css" rel="stylesheet" />
-        <script defer src="js/post-edit.js"></script>
-        <link rel="icon" href="/images/faviconpawfect.png.ico" type="favicon.pawfects">
-        <meta name="description" content="Edit post page for pawfect" />
-        <title>Pawfect Edit page</title>
-    </head>
-    <body>
-        <header>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="/css/styles-nav-footer.css" rel="stylesheet" />
+    <link href="/css/edit.css" rel="stylesheet" />
+    <script defer src="/js/post-edit.js"></script>
+    <link rel="icon" href="/images/faviconpawfect.png.ico" type="favicon.pawfects">
+    <meta name="description" content="Edit post page for pawfect" />
+    <title>Pawfect Edit page</title>
+</head>
+<body>
+    <header>
         <nav class="nav-buttons-main">
             <ul class="nav-buttons">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="blogposts.html">Blog Posts</a></li>
-            <li><a href="account/login.html">Log in</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogposts.html">Blog Posts</a></li>
+                <li><a href="account/login.html">Log in</a></li>
             </ul>
         </nav>
-        </header>
-        <main>
-            Only owners of blog can access this. It's the editing page where owner can
-            update title, image and content. Also a delete button.
-        </main>
-        <footer>
+    </header>
+    <main>
+        <h1>Edit Post</h1>
+        <div class="form-container">
+            <form id="edit-post-form">
+                <input type="hidden" id="post-id" />
+                <label for="title">Title:</label>
+                <input type="text" id="title" required />
+                <label for="media-url">Media URL:</label>
+                <input type="text" id="media-url" required />
+                <label for="media-alt">Media Alt Text:</label>
+                <input type="text" id="media-alt" required />
+                <label for="body">Content:</label>
+                <textarea id="body" required></textarea>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </main>
+    <footer>
         <a href="#faq">FAQ</a>
         <a href="#terms">Terms and Conditions</a>
         <a href="#contact">Contact</a>
         <a href="#social-media">Follow Us on Social Media</a>
         <a href="#about">About Us</a>
-        </footer>
-    </body>
+    </footer>
+</body>
 </html>

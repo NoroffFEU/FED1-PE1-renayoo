@@ -9,24 +9,36 @@ document.addEventListener("DOMContentLoaded", function () {
             password: document.getElementById("password").value
         };
 
+        // Retrieve access token from local storage
+        var accessToken = localStorage.getItem('accessToken');
+
+        if (!accessToken) {
+            document.getElementById("errorMessages").innerText = "Error: You need to be logged in to register a new user.";
+            return;
+        }
+
         // Make POST request to API
         fetch("https://v2.api.noroff.dev/auth/register", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + accessToken
             },
             body: JSON.stringify(formData)
         })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error("Error: can't register user");
-                }
-                return response.json();
+                return response.json().then(data => ({
+                    status: response.status,
+                    body: data
+                }));
             })
-            .then(data => {
+            .then(responseData => {
+                if (responseData.status !== 201) {
+                    throw new Error(responseData.body.message || "Can't register user");
+                }
                 // Handle successful response
-                console.log("User registered successfully:", data);
-                // Optionally, redirect to another page or show a success message
+                console.log("User registered successfully:", responseData.body);
+                document.getElementById("successMessages").innerText = "User registered successfully!";
             })
             .catch(error => {
                 // Handle error

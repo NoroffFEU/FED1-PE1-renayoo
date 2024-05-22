@@ -54,8 +54,7 @@ window.onload = function () {
         document.getElementById('success-message').style.color = 'black';
         document.getElementById('register-button-logged-in').style.display = 'block';
     } else {
-        // If no access token is available, hide logged-in message
-        document.getElementById('login-success-container').style.display = 'none';
+        // If no access token is available, hide logged-in message  
         document.getElementById('logged-in-message').style.display = 'none';
         document.getElementById('register-button-logged-in').style.display = 'none';
     }

@@ -4,7 +4,7 @@ let next = document.querySelector('.next');
 let imgs = document.querySelectorAll('.carousel-img');
 let links = document.querySelectorAll('.carousel-link');
 let dots = document.querySelectorAll('.dot');
-let captions = document.querySelectorAll('.carousel-caption');
+let captions = document.querySelectorAll('.carousel-caption-text');
 let totalImgs = imgs.length;
 let imgPosition = 0;
 
@@ -19,39 +19,41 @@ fetch('https://v2.api.noroff.dev/blog/posts/poppy')
         }
         return response.json();
     })
-    .then(data => {
-        const posts = data.slice(0, 3);
+    .then(responseData => {
+        const posts = responseData.data.slice(0, 3); 
         posts.forEach((post, index) => {
             imgs[index].src = post.media.url;
             links[index].href = `post/index.html?id=${post.id}`;
             captions[index].textContent = post.title;
+            links[index].textContent = "Read More";
         });
     })
     .catch(error => {
         console.error('Error fetching data: Blog posts not fetched', error);
     });
 
-// Update Position
+// Position for images
 function updatePosition() {
-    //   Images
+    // Images
     for (let img of imgs) {
         img.classList.remove('visible');
         img.classList.add('hidden');
     }
     imgs[imgPosition].classList.remove('hidden');
     imgs[imgPosition].classList.add('visible');
-    //   Dots
+    // Dots
     for (let dot of dots) {
         dot.className = dot.className.replace(" active", "");
     }
     dots[imgPosition].classList.add('active');
-    //   Captions
-    for (let caption of captions) {
+    // Captions
+    let captionContainers = document.querySelectorAll('.carousel-caption');
+    for (let caption of captionContainers) {
         caption.classList.remove('visible');
         caption.classList.add('hidden');
     }
-    captions[imgPosition].classList.remove('hidden');
-    captions[imgPosition].classList.add('visible');
+    captionContainers[imgPosition].classList.remove('hidden');
+    captionContainers[imgPosition].classList.add('visible');
 }
 
 // Next Img
@@ -78,6 +80,6 @@ function prevImg() {
 dots.forEach((dot, dotPosition) => {
     dot.addEventListener("click", () => {
         imgPosition = dotPosition;
-        updatePosition(dotPosition);
+        updatePosition();
     });
 });

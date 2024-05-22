@@ -16,7 +16,7 @@ function createPostElement(post) {
 
     const createdDate = document.createElement('p');
     createdDate.classList.add('post-created-date');
-    createdDate.textContent = `Date: ${new Date(post.created).toLocaleDateString()}`;
+    createdDate.textContent = `Published: ${new Date(post.created).toLocaleDateString()}`;
 
     const updatedDate = document.createElement('p');
     updatedDate.classList.add('post-updated-date');
@@ -67,7 +67,7 @@ async function fetchData() {
             const post = data.data.find(p => p.id === postId);
             if (post) {
                 const postElement = createPostElement(post);
-                postsContainer.innerHTML = ''; 
+                postsContainer.innerHTML = '';
                 postsContainer.appendChild(postElement);
             } else {
                 postsContainer.innerHTML = '<p>Post not found</p>';

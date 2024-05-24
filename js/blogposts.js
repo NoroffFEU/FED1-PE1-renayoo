@@ -23,7 +23,7 @@ function createPostElement(post) {
     image.alt = post.media.alt;
 
     const imageLink = document.createElement('a');
-    imageLink.href = `/post/index.html?id=${post.id}`;
+    imageLink.href = `/FED1-PE1-renayoo/post/index.html?id=${post.id}`;
     imageLink.appendChild(image);
 
     postDiv.appendChild(imageLink);

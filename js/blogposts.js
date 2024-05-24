@@ -9,7 +9,7 @@ function createPostElement(post) {
     title.textContent = post.title;
 
     const bodySnippet = document.createElement('p');
-    bodySnippet.textContent = post.body.substring(0, 200) + '...';
+    bodySnippet.textContent = post.body.substring(0, 300) + '...';
 
     const readMoreButton = document.createElement('button');
     readMoreButton.textContent = 'Read More';

@@ -5,6 +5,10 @@ body {
     min-height: 100vh;
 }
 
+main {
+    min-height: 80dvh;
+}
+
 h1 {
     color: white;
     text-shadow: black;
@@ -42,4 +46,3 @@ input[type="submit"]:hover {
 .error-message {
     color: red;
 }
-

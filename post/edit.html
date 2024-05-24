@@ -7,7 +7,7 @@
         <link href="/css/styles-nav-footer.css" rel="stylesheet" />
         <link href="/css/edit.css" rel="stylesheet" />
         <script defer src="/js/post-edit.js"></script>
-        <script defer src="js/auth.js"></script>
+        <!-- <script defer src="js/auth.js"></script> -->
         <link rel="icon" href="/images/faviconpawfect.png.ico" type="favicon.pawfects">
         <meta name="description" content="Edit post page for pawfect" />
         <title>Pawfect Edit page</title>
@@ -17,9 +17,9 @@
             <header>
                 <nav class="nav-buttons-main">
                     <ul class="nav-buttons">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="blogposts.html">Blog Posts</a></li>
-                        <li><a href="account/login.html">Log in</a></li>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/blogposts.html">Blog Posts</a></li>
+                        <li><a href="/account/login.html">Log in</a></li>
                     </ul>
                 </nav>
             </header>
@@ -39,8 +39,9 @@
                         <label for="body">Content:</label>
                         <textarea id="body" required></textarea>
                         <div class="button-container">
-                            <button type="submit">Save Changes</button>
+                            <button id="save-changes-button" type="button">Save Changes</button>
                         </div>
+                        <button id="delete-button" type="button">Delete Post</button>
                     </form>
                 </div>
             </main>

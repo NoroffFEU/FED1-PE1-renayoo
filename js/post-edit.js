@@ -3,12 +3,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const postId = params.get('id');
     const accessToken = localStorage.getItem('accessToken');
 
+    localStorage.setItem('currentlyEditingPostId', postId);
+
     if (!accessToken) {
         window.location.href = 'login.html';
         return;
     }
 
     try {
+
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${postId}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -20,11 +23,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const responseData = await response.json();
         const post = responseData.data;
 
-        console.log('Fetched post:', post);
+
+        console.log('Fetched post response:', post);
 
         // Check if the required fields are present
         if (post && post.id && post.title && post.body && post.media && post.media.url) {
-            console.log('All required fields are present:', post);
+            console.log('All required fields are present!');
             document.getElementById('post-id').value = post.id;
             document.getElementById('title').value = post.title;
             document.getElementById('body').value = post.body;
@@ -36,52 +40,91 @@ document.addEventListener('DOMContentLoaded', async () => {
                 document.getElementById('tags').value = post.tags.join(', ');
             }
         } else {
-            console.error('Missing required fields in the API response', post);
+            console.error('Missing required fields in the API response');
         }
 
-        // Buttons - Delete 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete Post';
-        deleteButton.classList.add('delete-post');
-        deleteButton.addEventListener('click', async () => {
-            try {
-                const response = await fetch(`/blog/posts/poppy/${postId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
-                    }
-                });
 
-                if (response.ok) {
-                    console.log('Post deleted successfully');
-                    window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
-                } else {
-                    const errorMessage = await response.text();
-                    console.error('Failed to delete post:', errorMessage);
-                }
-            } catch (error) {
-                console.error('Error deleting post:', error);
-            }
-        });
 
-        // Append delete btn
-        const form = document.getElementById('edit-post-form');
-        form.appendChild(deleteButton);
     } catch (error) {
         console.error('Error fetching post data:', error);
     }
+
+
+    async function handleEditPost() {
+
+        let tags = [];
+        const tagsInput = document.getElementById('tags').value;
+        if (tagsInput && tagsInput.length > 0) {
+            tags = tagsInput.split(',');
+        }
+
+        const body = {
+            "title": document.getElementById('title').value,
+            "body": document.getElementById('body').value,
+            "tags": tags,
+            "media": {
+                "url": document.getElementById('media-url').value,
+                "alt": document.getElementById('media-alt').value
+            }
+        }
+
+        const postId = localStorage.getItem('currentlyEditingPostId');
+        const accessToken = localStorage.getItem('accessToken');
+
+        if (!accessToken) {
+            window.location.href = 'login.html';
+            return;
+        }
+        console.log("postId: ", postId);
+        console.log("accessToken: ", accessToken);
+        console.log("body: ", JSON.stringify(body));
+        try {
+            const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${postId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                },
+                body: JSON.stringify(body)
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const responseData = await response.json();
+            const post = responseData.data;
+
+            console.log('Saved post response:', post);
+
+        } catch (error) {
+            console.error("Error saving post: ", error);
+        }
+    }
+
+    const saveChangesButton = document.getElementById("save-changes-button");
+    saveChangesButton.addEventListener("click", handleEditPost);
+
+    // Buttons - Delete 
+    const deleteButton = document.getElementById("delete-button");;
+    deleteButton.addEventListener('click', async () => {
+        try {
+            console.log("blah blah", accessToken);
+            const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${postId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
+
+            if (response.ok) {
+                console.log('Post deleted successfully');
+                window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
+            } else {
+                const errorMessage = await response.text();
+                console.error('Failed to delete post:', errorMessage);
+            }
+        } catch (error) {
+            console.error('Error deleting post:', error);
+        }
+    });
 });
-
-console.log('Fetched post:', post);  // Debugging statement
-
-// Console log de bugging remove before 
-if (post && post.id && post.title && post.body && post.media && post.media.url) {
-    console.log('All required fields are present:', post);
-    document.getElementById('post-id').value = post.id;
-    document.getElementById('title').value = post.title;
-    document.getElementById('body').value = post.body;
-    document.getElementById('media-url').value = post.media.url;
-    document.getElementById('media-alt').value = post.media.alt || '';
-} else {
-    console.error('Missing required fields in the API response', post);
-}

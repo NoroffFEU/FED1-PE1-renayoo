@@ -13,8 +13,8 @@ async function login(email, password) {
             throw new Error('Wrong username or password');
         }
 
-        const data = await response.json();
-        const accessToken = data.accessToken;
+        const jsonResponse = await response.json();
+        const accessToken = jsonResponse.data.accessToken;
 
         // Save token to local storage
         localStorage.setItem('accessToken', accessToken);

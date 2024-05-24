@@ -16,9 +16,9 @@
         <header>
             <nav class="nav-buttons-main">
                 <ul class="nav-buttons">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="blogposts.html">Blog Posts</a></li>
-                    <li><a href="account/login.html">Log in</a></li>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/blogposts.html">Blog Posts</a></li>
+                    <li><a href="/account/login.html">Log in</a></li>
                 </ul>
             </nav>
         </header>
@@ -26,9 +26,9 @@
             <div class="static-latest-posts">
                 <div class="background-overlay"></div>
                 <div class="background-image"></div>
-                <div class="posts-container">
+                <div>
                     <h1 class="allblogs">All Blogs</h1>
-                    <div id="sort-filter-container">
+                    <div id="sort-filter-container" class="sort-filter-container">
                         <label for="sort-dropdown">Sort By:</label>
                         <select id="sort-dropdown">
                             <option value="oldest">Oldest to Newest</option>
@@ -38,7 +38,7 @@
                         <select id="category-filter">
                         </select>
                     </div>
-                    <ul id="posts-container"></ul>
+                    <ul id="posts-container" class="posts-container"></ul>
                     <div id="pagination-container"></div>
                 </div>
             </div>

@@ -10,12 +10,15 @@ h1 {
     margin: 20px;
 }
 
+main {
+    min-height: 80dvh;
+}
+
 .form-container {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     margin-bottom: 20px;
     opacity: 90%;
-    height: 100vh;
     margin: 5px;
 }
 

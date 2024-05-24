@@ -50,7 +50,7 @@ window.onload = function () {
         // If access token is available, show logged-in message
         document.getElementById('login-container').style.display = 'none';
         document.getElementById('logged-in-message').style.display = 'block';
-        document.getElementById('success-message').textContent = 'You are already logged in. You can create posts, edit posts, delete or register a new admin.';
+        document.getElementById('success-message').textContent = 'You are already logged in. You can create posts, edit posts, delete posts or register a new admin.';
         document.getElementById('success-message').style.color = 'black';
         document.getElementById('register-button-logged-in').style.display = 'block';
     } else {

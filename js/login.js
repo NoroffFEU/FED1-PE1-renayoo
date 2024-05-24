@@ -26,7 +26,7 @@ async function login(email, password) {
 
         // Display success message
         const successMessage = document.getElementById('success-message');
-        successMessage.textContent = 'You have now logged in. You can edit posts or register a new admin.';
+        successMessage.textContent = 'You have now logged in. You can create posts, edit posts, delete posts or register a new admin.';
         successMessage.style.color = 'black';
 
         // Show register button
@@ -43,14 +43,14 @@ async function login(email, password) {
     }
 }
 
-// Check if the user is already logged in
+// Check if user is already logged in
 window.onload = function () {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
         // If access token is available, show logged-in message
         document.getElementById('login-container').style.display = 'none';
         document.getElementById('logged-in-message').style.display = 'block';
-        document.getElementById('success-message').textContent = 'You are already logged in. You can edit posts or register a new admin.';
+        document.getElementById('success-message').textContent = 'You are already logged in. You can create posts, edit posts, delete or register a new admin.';
         document.getElementById('success-message').style.color = 'black';
         document.getElementById('register-button-logged-in').style.display = 'block';
     } else {
@@ -66,14 +66,13 @@ document.getElementById('login-form').addEventListener('submit', function (event
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // Call login function with email and password
+    // Call function with email and password
     login(email, password);
 });
 
 // Log out the user - remove access token
 function logout() {
-    // Remove the authentication token from local storage
     localStorage.removeItem('accessToken');
-    // Redirect the user to the login page
+
     window.location.href = 'login.html';
 }

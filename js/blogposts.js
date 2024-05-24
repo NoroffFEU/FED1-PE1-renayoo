@@ -15,7 +15,7 @@ function createPostElement(post) {
     readMoreButton.textContent = 'Read More';
     readMoreButton.classList.add('read-more');
     readMoreButton.addEventListener('click', () => {
-        window.location.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${post.id}`;
+        window.location.href = `/post/index.html?id=${post.id}`;
     });
 
     const image = document.createElement('img');
@@ -23,7 +23,7 @@ function createPostElement(post) {
     image.alt = post.media.alt;
 
     const imageLink = document.createElement('a');
-    imageLink.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${post.id}`;
+    imageLink.href = `/post/index.html?id=${post.id}`;
     imageLink.appendChild(image);
 
     postDiv.appendChild(imageLink);
@@ -31,53 +31,23 @@ function createPostElement(post) {
     postDiv.appendChild(bodySnippet);
     postDiv.appendChild(readMoreButton);
 
-    // Check if user is logged in
+    // Check if accesstoken (User logged in)
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.classList.add('delete-post');
-        deleteButton.addEventListener('click', async () => {
-            try {
-                const accessToken = localStorage.getItem('accessToken');
-                if (!accessToken) {
-                    throw new Error('User is not logged in');
-                }
-
-                const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
-                    }
-                });
-
-                if (response.ok) {
-                    postDiv.remove();
-                    console.log('Post deleted successfully');
-                } else {
-                    const errorMessage = await response.text();
-                    console.error('Failed to delete post:', errorMessage);
-                }
-            } catch (error) {
-                console.error('Error deleting post:', error);
-            }
-        });
-
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
         editButton.classList.add('edit-post');
         editButton.addEventListener('click', () => {
-            window.location.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/edit.html?id=${post.id}`;
+            window.location.href = `/post/edit.html?id=${post.id}`;
         });
 
         postDiv.appendChild(editButton);
-        postDiv.appendChild(deleteButton);
     }
 
     return postDiv;
 }
 
-// Fetching data from API
+// Fetching API
 async function fetchData() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/poppy');
@@ -94,6 +64,5 @@ async function fetchData() {
     }
 }
 
-// Call the fetchData function to retrieve and display posts
+// Call the fetchData function for posts
 fetchData();
-

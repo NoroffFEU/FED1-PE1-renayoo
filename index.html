@@ -5,10 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="css/styles-nav-footer.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/blogposts.css" rel="stylesheet" />
         <link rel="icon" href="images/faviconpawfect.png.ico" type="favicon.pawfects">
         <meta name="description" content="Home page for pawfect" />
         <script defer src="js/index.js"></script>
         <script defer src="js/blogposts.js"></script>
+        <script defer src="js/auth.js"></script>
         <title>Pawfect Woof!</title>
     </head>
     <body>
@@ -39,43 +41,46 @@
         <div class="carousel-latest-posts">
             <h3 class="latestpost">Latest posts:</h3>
             <div class="carousel-container">
-                <div class="carousel-imgs">
-                    <img src="" class="carousel-img visible" alt="Post Image 1"/>
-                    <img src="" class="carousel-img hidden" alt="Post Image 2"/>
-                    <img src="" class="carousel-img hidden" alt="Post Image 3"/>
-                </div>
+                <div class="carousel-inner">
                     <a class="prev arrow">&#10094;</a>
+                    <div class="carousel-item visible">
+                        <img src="" class="carousel-img" alt="Post Image 1"/>
+                        <div class="carousel-caption">
+                            <p class="carousel-caption-text">Title 1</p>
+                            <a href="#" class="carousel-link">Read More</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item hidden">
+                        <img src="" class="carousel-img" alt="Post Image 2"/>
+                        <div class="carousel-caption">
+                            <p class="carousel-caption-text">Title 2</p>
+                            <a href="#" class="carousel-link">Read More</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item hidden">
+                        <img src="" class="carousel-img" alt="Post Image 3"/>
+                        <div class="carousel-caption">
+                            <p class="carousel-caption-text">Title 3</p>
+                            <a href="#" class="carousel-link">Read More</a>
+                        </div>
+                    </div>
                     <a class="next arrow">&#10095;</a>
+                </div>
                 <div class="slide-numbers">
                     <span class="dot active"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
                 </div>
-                
-            </div>
-            <div class="carousel-title">
-                <div class="carousel-caption visible">
-                    <p class="carousel-caption-text">Title 1</p>
-                    <a href="#" class="carousel-link">Read More</a>
-                </div>
-                <div class="carousel-caption hidden">
-                    <p class="carousel-caption-text">Title 2</p>
-                    <a href="#" class="carousel-link">Read More</a>
-                </div>
-                <div class="carousel-caption hidden">
-                    <p class="carousel-caption-text">Title 3</p>
-                    <a href="#" class="carousel-link">Read More</a>
-                </div>
             </div>
         </div>
         <h3 class="Blogs">Blogs</h3>
         <div class="static-latest-posts">
+            <div class="background-overlay"></div>
+            <div class="background-image"></div>
             <div class="posts-container">
-                <div class="background-overlay">
                 <ul id="posts-container"></ul>
             </div>
-            <div class="background-image">
-            </div>
+        </div>
         </div>
         </main>
         <footer>

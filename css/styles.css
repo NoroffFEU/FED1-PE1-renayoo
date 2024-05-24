@@ -5,6 +5,16 @@
 * {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     box-sizing: border-box;
+    margin: 0;
+}
+
+
+h3 {
+    text-align: start;
+    text-transform: uppercase;
+    padding: 10px;
+    font-size: 50px;
+    font-weight: 100;
 }
 
 .first-wrapper {
@@ -48,45 +58,77 @@
     text-transform: uppercase;
 }
 
-* {
-    margin: 0;
-}
-
 .carousel-container {
     position: relative;
     margin: 1em auto .5em auto;
-    max-width: 600px;
+    max-width: 1300px;
+    border-radius: 0 .5em .5em 0;
+    overflow: hidden;
 }
 
-.carousel-container,
-.carousel-caption {
-    box-shadow: 0 0 5px rgb(255, 255, 255);
+.carousel-inner {
+    display: flex;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-item {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-item.visible {
+    display: flex;
 }
 
 .carousel-container img {
-    border-radius: .5em;
-    width: 100%;
+    border-radius: .5em 0 0 .5em;
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.hidden {
-    display: none;
+.carousel-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    font-size: 16px;
+    background-color: var(--header-footer-color);
+    padding: 2em;
+    width: 50%;
+    height: 100%;
 }
 
-.visible {
+.carousel-caption-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+}
+
+.carousel-link {
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
     display: block;
 }
 
-.arrow {
-    display: inline;
+.carousel-link:hover {
+    color: black;
 }
 
-.prev,
 .arrow {
     cursor: pointer;
     position: absolute;
     top: 50%;
     width: auto;
-    margin: -1.5em .3em 0 .3em;
+    margin-top: -1.5em;
     padding: 1em;
     color: white;
     font-weight: bold;
@@ -95,6 +137,11 @@
     border-radius: .5em;
     user-select: none;
     background-color: rgba(204, 204, 204, 0.3);
+    z-index: 10;
+}
+
+.prev {
+    left: 0;
 }
 
 .next {
@@ -135,140 +182,88 @@
     box-shadow: 0 0 5px #fff;
 }
 
-.carousel-caption {
-    text-align: center;
-    font-size: 20px;
-    background-color: var(--header-footer-color);
-    max-width: 600px;
-    margin: .5em auto;
-    padding: 1em 0;
-    border-radius: .5em;
+
+
+
+
+@media only screen and (max-width: 540px) {
+    .wrapper-img {
+        position: relative;
+        display: block;
+    }
+
+    .wrapper-img img {
+        width: 100%;
+        height: 250px;
+    }
+
+    .welcome-text-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        opacity: 80%;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    .welcome-headline {
+        font-size: 20px;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .welcome-text-p {
+        font-size: 15px;
+        text-transform: none;
+        text-transform: uppercase;
+    }
 }
 
+@media only screen and (max-width: 768px) {
+    h3 {
+        text-align: center;
+        font-size: 30px;
+    }
 
-.carousel-link {
-    color: white;
-    border-radius: 5px;
-    font-size: 20px;
-    padding: 5px;
-    margin-top: 10px;
+    .carousel-container {
+        margin: 5px;
+        border-radius: 0 0 .5em .5em;
+    }
+
+    .carousel-container img {
+        width: 100%;
+        border-radius: .5em .5em 0 0;
+    }
+
+    .carousel-caption {
+        width: 100%;
+        padding: 1em;
+    }
+
+    .carousel-link {
+        margin-top: 15px;
+    }
+
+    .carousel-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carousel-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .carousel-caption {
+        width: 100%;
+        padding: 1em;
+    }
 }
-
-.carousel-link:hover {
-    color: black;
-}
-
-.static-latest-posts {
-    position: relative;
-}
-
-.static-latest-posts .background-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 255, 255, 0.5);
-}
-
-.static-latest-posts .background-image {
-    background: url('https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_1280.png') no-repeat center center fixed;
-    background-size: cover;
-    height: 1800px;
-    z-index: 1;
-}
-
-h3 {
-    text-transform: uppercase;
-    font-size: 50px;
-    padding: 20px;
-    font-weight: 200;
-}
-
-h2 {
-    text-align: center;
-    padding: 20px;
-}
-
-.post {
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 20px;
-}
-
-.post p {
-    margin: 20px;
-    text-align: start;
-}
-
-.post img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 15px;
-    margin: 0;
-    border-radius: 10px;
-}
-
-#posts-container {
-    padding: 20px;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 3px;
-}
-
-.post {
-    flex: 0 1 calc(33% - 20px);
-    padding: 20px;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-.read-more {
-    background-color: var(--header-footer-color);
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    float: left;
-}
-
-.read-more:hover {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-button {
-    background-color: var(--header-footer-color);
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.5s ease;
-    float: left;
-}
-
-button:hover {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-
-
-@media only screen and (max-width: 900px) {}

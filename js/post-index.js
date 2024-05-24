@@ -49,6 +49,42 @@ function createPostElement(post) {
     postDiv.appendChild(tags);
     postDiv.appendChild(shareableURL);
 
+    // Check if user is logged in
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.classList.add('edit-post');
+        editButton.addEventListener('click', () => {
+            window.location.href = `edit.html?id=${post.id}`;
+        });
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('delete-post');
+        deleteButton.addEventListener('click', async () => {
+            try {
+                const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
+                } else {
+                    console.error('Failed to delete post:', await response.json());
+                }
+            } catch (error) {
+                console.error('Error deleting post:', error);
+            }
+        });
+
+        postDiv.appendChild(editButton);
+        postDiv.appendChild(deleteButton);
+    }
+
     return postDiv;
 }
 
@@ -66,6 +102,9 @@ async function fetchData() {
         if (postId) {
             const post = data.data.find(p => p.id === postId);
             if (post) {
+                // Update the page title
+                document.title = `Pawfect: ${post.title}`;
+
                 const postElement = createPostElement(post);
                 postsContainer.innerHTML = '';
                 postsContainer.appendChild(postElement);

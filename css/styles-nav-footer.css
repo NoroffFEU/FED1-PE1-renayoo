@@ -1,6 +1,7 @@
 :root {
     --header-footer-color: rgb(48, 192, 192);
 }
+
 * {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     box-sizing: border-box;
@@ -21,18 +22,18 @@ body {
     margin: 0;
     padding: 30px;
     display: flex;
-    top: 0; 
+    top: 0;
     width: 100%;
-    text-align: center; 
+    text-align: center;
     text-transform: uppercase;
-    background-color:var(--header-footer-color);
+    background-color: var(--header-footer-color);
     font-size: 20px;
     justify-content: space-evenly;
 }
 
 .nav-buttons a {
     text-decoration: none;
-    color: rgb(255, 255, 255); 
+    color: rgb(255, 255, 255);
     padding: 15px 20px;
     position: relative;
 }
@@ -63,6 +64,7 @@ footer {
     padding: 33px;
     font-size: 15px;
 }
+
 footer a {
     color: #ffffff;
     text-decoration: none;
@@ -70,6 +72,29 @@ footer a {
     height: 100%;
     line-height: 2;
 }
+
 footer a:hover {
     color: black;
+}
+
+@media only screen and (max-width: 540px) {
+    .nav-buttons {
+        flex-direction: column;
+    }
+
+    .nav-buttons li {
+        padding: 10px;
+    }
+
+    footer {
+        flex-direction: column;
+        height: 280px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    footer {
+        height: 280px;
+
+    }
 }

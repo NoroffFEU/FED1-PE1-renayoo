@@ -6,6 +6,7 @@ document.getElementById('create-post-form').addEventListener('submit', function 
     const mediaUrl = document.getElementById('media-url').value;
     const mediaAlt = document.getElementById('media-alt').value;
     const body = document.getElementById('body').value;
+    const tags = document.getElementById('tags').value;
 
     // Check if user is logged in and has access token in local storage
     const accessToken = localStorage.getItem('accessToken');
@@ -23,7 +24,8 @@ document.getElementById('create-post-form').addEventListener('submit', function 
         media: {
             url: mediaUrl,
             alt: mediaAlt
-        }
+        },
+        tags: tags.split(',').map(tag => tag.trim()) // Split by comma and trim whitespace
     };
 
     console.log('Post Data:', postData);  // Debugging

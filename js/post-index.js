@@ -31,7 +31,7 @@ function createPostElement(post) {
     body.classList.add('post-body');
 
     const tags = document.createElement('p');
-    tags.textContent = `Category: ${post.tags.join(', ')}`;
+    tags.textContent = `Categories: ${post.tags.join(', ')}`;
 
     const shareableURL = document.createElement('p');
     const baseURL = 'https://norofffeu.github.io/FED1-PE1-renayoo';

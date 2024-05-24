@@ -77,24 +77,25 @@ footer a:hover {
     color: black;
 }
 
+@media only screen and (max-width: 900px) {
+    .login-container {
+        margin-bottom: 100px;
+        /* Add margin at the bottom to create space for the footer */
+    }
+
+    footer {
+        flex-direction: column;
+        height: 250px;
+    }
+}
+
 @media only screen and (max-width: 540px) {
     .nav-buttons {
         flex-direction: column;
     }
-
     .nav-buttons li {
         padding: 10px;
     }
-
-    footer {
-        flex-direction: column;
-        height: 280px;
-    }
 }
 
-@media only screen and (max-width: 375px) {
-    footer {
-        height: 280px;
-
-    }
-}
+@media only screen and (max-width: 375px) {}

@@ -28,7 +28,18 @@
                 <div class="background-image"></div>
                 <div class="posts-container">
                     <h1 class="allblogs">All Blogs</h1>
+                    <div id="sort-filter-container">
+                        <label for="sort-dropdown">Sort By:</label>
+                        <select id="sort-dropdown">
+                            <option value="oldest">Oldest to Newest</option>
+                            <option value="newest">Newest to Oldest</option>
+                        </select>
+                        <label for="category-filter">Filter By Category:</label>
+                        <select id="category-filter">
+                        </select>
+                    </div>
                     <ul id="posts-container"></ul>
+                    <div id="pagination-container"></div>
                 </div>
             </div>
         </main>

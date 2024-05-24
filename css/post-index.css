@@ -97,3 +97,19 @@ button:hover {
     background-color: #ffffff;
     color: #000000;
 }
+
+@media screen and (max-width: 768px) {
+    .post-meta {
+        text-align: center;
+        margin: 2px;
+    }
+
+    .post-body {
+        margin: 0;
+        font-size: 15px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+}

@@ -31,7 +31,7 @@ function createPostElement(post) {
     postDiv.appendChild(bodySnippet);
     postDiv.appendChild(readMoreButton);
 
-    // Check if accesstoken (User logged in)
+    // Check if accesstoken (User)
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
         const editButton = document.createElement('button');

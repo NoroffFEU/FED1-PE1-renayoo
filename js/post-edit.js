@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const responseData = await response.json();
         const post = responseData.data;
 
-        console.log('Fetched post:', post);  
+        console.log('Fetched post:', post);
 
         // Check if the required fields are present
         if (post && post.id && post.title && post.body && post.media && post.media.url) {
@@ -30,44 +30,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('body').value = post.body;
             document.getElementById('media-url').value = post.media.url;
             document.getElementById('media-alt').value = post.media.alt || '';
+
+            // Prepopulate category tag field if available
+            if (post.tags && post.tags.length > 0) {
+                document.getElementById('tags').value = post.tags.join(', ');
+            }
         } else {
             console.error('Missing required fields in the API response', post);
         }
-
-        document.getElementById('edit-post-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const updatedPost = {
-                title: document.getElementById('title').value,
-                body: document.getElementById('body').value,
-                media: {
-                    url: document.getElementById('media-url').value,
-                    alt: document.getElementById('media-alt').value
-                }
-            };
-
-            console.log('Updated post data:', updatedPost);  // Debugging statement
-
-            try {
-                const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${postId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${accessToken}`
-                    },
-                    body: JSON.stringify(updatedPost)
-                });
-
-                if (response.ok) {
-                    console.log('Post updated successfully');
-                    window.location.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${postId}`;
-                } else {
-                    console.error('Failed to update post', await response.json());
-                }
-            } catch (error) {
-                console.error('Error updating post:', error);
-            }
-        });
 
         // Buttons - Delete 
         const deleteButton = document.createElement('button');
@@ -104,14 +74,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 console.log('Fetched post:', post);  // Debugging statement
 
-// Console log
+// Console log de bugging remove before 
 if (post && post.id && post.title && post.body && post.media && post.media.url) {
     console.log('All required fields are present:', post);
     document.getElementById('post-id').value = post.id;
     document.getElementById('title').value = post.title;
     document.getElementById('body').value = post.body;
     document.getElementById('media-url').value = post.media.url;
-    document.getElementById('media-alt').value = post.media.alt || ''; 
+    document.getElementById('media-alt').value = post.media.alt || '';
 } else {
     console.error('Missing required fields in the API response', post);
 }

@@ -1,4 +1,8 @@
 const postsContainer = document.getElementById('posts-container');
+const sortDropdown = document.getElementById('sort-dropdown');
+const tagFilter = document.getElementById('category-filter'); // Use tagFilter for clarity
+
+let allPosts = [];
 
 // Function to display blog posts
 function createPostElement(post) {
@@ -47,22 +51,71 @@ function createPostElement(post) {
     return postDiv;
 }
 
+// Function to display posts based on sorting and filtering
+function displayPosts(posts) {
+    postsContainer.innerHTML = '';
+    posts.forEach(post => {
+        const postElement = createPostElement(post);
+        postsContainer.appendChild(postElement);
+    });
+}
+
+// Function to sort posts
+function sortPosts(posts, sortBy) {
+    return posts.slice().sort((a, b) => {
+        const dateA = new Date(a.created);
+        const dateB = new Date(b.created);
+        return sortBy === 'newest' ? dateB - dateA : dateA - dateB;
+    });
+}
+
+// Function to filter posts by tag
+function filterPostsByTag(posts, tag) {
+    return tag === 'all' ? posts : posts.filter(post => post.tags.includes(tag));
+}
+
 // Fetching API
 async function fetchData() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/poppy');
         const data = await response.json();
+        allPosts = data.data;
 
-        // Display posts
-        data.data.forEach(post => {
-            const postElement = createPostElement(post);
-            postsContainer.appendChild(postElement);
+        // Populate tag filter options
+        const tags = Array.from(new Set(allPosts.flatMap(post => post.tags)));
+        tagFilter.innerHTML = '<option value="all">All</option>';
+        tags.forEach(tag => {
+            const option = document.createElement('option');
+            option.value = tag;
+            option.textContent = tag;
+            tagFilter.appendChild(option);
         });
+
+        // Display posts initially
+        const sortedPosts = sortPosts(allPosts, sortDropdown.value);
+        displayPosts(sortedPosts);
     } catch (error) {
         console.error('Error fetching data:', error);
         displayError('Cannot fetch blog posts.');
     }
 }
 
+// Event listeners for sorting and filtering
+sortDropdown.addEventListener('change', () => {
+    const sortedPosts = sortPosts(allPosts, sortDropdown.value);
+    const filteredPosts = filterPostsByTag(sortedPosts, tagFilter.value);
+    displayPosts(filteredPosts);
+});
+
+tagFilter.addEventListener('change', () => {
+    const sortedPosts = sortPosts(allPosts, sortDropdown.value);
+    const filteredPosts = filterPostsByTag(sortedPosts, tagFilter.value);
+    displayPosts(filteredPosts);
+});
+
 // Call the fetchData function for posts
 fetchData();
+
+function displayError(message) {
+    postsContainer.innerHTML = `<p>${message}</p>`;
+}

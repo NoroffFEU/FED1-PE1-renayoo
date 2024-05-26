@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const post = responseData.data;
 
             // Alert on successful editing
-            window.alert('Post edited successfully!');
+            window.alert('Editing saved successfully!');
 
         } catch (error) {
             console.error("Error saving post: ", error);
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Buttons - Delete 
     const deleteButton = document.getElementById("delete-button");;
     deleteButton.addEventListener('click', async () => {
-        // Confirmation dialog before deletion
+        // Confirm deleting post
         const confirmation = window.confirm('Are you sure you want to delete this post?');
         if (!confirmation) return;
 
@@ -118,7 +118,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const errorMessage = await response.text();
                 console.error('Failed to delete post:', errorMessage);
                 // Display deletion error message
-                // You can replace this with an appropriate way to display error messages in your UI
                 window.alert('Failed to delete post: ' + errorMessage);
             }
         } catch (error) {

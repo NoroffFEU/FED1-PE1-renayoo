@@ -28,7 +28,7 @@ document.getElementById('create-post-form').addEventListener('submit', function 
 
 
     // Send POST request to the API
-    fetch('https://v2.api.noroff.dev/blog/posts/', {
+    fetch('https://v2.api.noroff.dev/blog/posts/<name>, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${accessToken}`,

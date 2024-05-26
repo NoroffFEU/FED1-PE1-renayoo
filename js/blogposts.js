@@ -99,7 +99,10 @@ async function fetchData() {
             tagFilter.appendChild(option);
         });
 
-        // Display posts initially
+        // Newest posts shows first 
+        sortDropdown.value = 'newest';
+
+        // Display posts initially with newest posts last
         const sortedPosts = sortPosts(allPosts, sortDropdown.value);
         displayPosts(sortedPosts);
         updatePagination(sortedPosts);

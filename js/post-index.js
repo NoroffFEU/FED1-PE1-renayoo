@@ -49,48 +49,49 @@ function createPostElement(post) {
     postDiv.appendChild(tags);
     postDiv.appendChild(shareableURL);
 
-    // Check if user is logged in
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-        const editButton = document.createElement('button');
-        editButton.textContent = 'Edit';
-        editButton.classList.add('edit-post');
-        editButton.addEventListener('click', () => {
-            window.location.href = `edit.html?id=${post.id}`;
-        });
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.classList.add('delete-post');
+// Check if user is logged in
+const accessToken = localStorage.getItem('accessToken');
+if (accessToken) {
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.classList.add('edit-post');
+    editButton.addEventListener('click', () => {
+        window.location.href = `edit.html?id=${post.id}`;
+    });
 
-        // Delete button
-        deleteButton.addEventListener('click', async () => {
-            const isConfirmed = confirm('Are you sure you want to delete this post?');
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-post');
 
-            if (isConfirmed) {
-                try {
-                    const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Authorization': `Bearer ${accessToken}`
-                        }
-                    });
+    // Updated event listener with confirmation dialog
+    deleteButton.addEventListener('click', async () => {
+        // Display a confirmation dialog
+        const isConfirmed = confirm('Are you sure you want to delete this post?');
 
-                    if (response.ok) {
-                        window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
-                    } else {
-                        console.error('Failed to delete post:', await response.json());
+        if (isConfirmed) {
+            try {
+                const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
                     }
-                } catch (error) {
-                    console.error('Error deleting post:', error);
+                });
+
+                if (response.ok) {
+                    window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
+                } else {
+                    console.error('Failed to delete post:', await response.json());
                 }
+            } catch (error) {
+                console.error('Error deleting post:', error);
             }
-        });
+        }
+    });
 
-        postDiv.appendChild(editButton);
-        postDiv.appendChild(deleteButton);
-    }
-
+    postDiv.appendChild(editButton);
+    postDiv.appendChild(deleteButton);
+}
 
 function getPostIdFromURL() {
     const params = new URLSearchParams(window.location.search);

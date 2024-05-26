@@ -12,7 +12,7 @@ let imgPosition = 0;
 next.addEventListener('click', nextImg);
 prev.addEventListener('click', prevImg);
 
-// Fetch data API
+// Fetch data API for carousel
 fetch('https://v2.api.noroff.dev/blog/posts/poppy')
     .then(response => {
         if (!response.ok) {
@@ -24,7 +24,7 @@ fetch('https://v2.api.noroff.dev/blog/posts/poppy')
         const posts = responseData.data.slice(0, 3);
         posts.forEach((post, index) => {
             imgs[index].src = post.media.url;
-            links[index].href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${post.id}`;
+            links[index].href = `/FED1-PE1-renayoo/post/index.html?id=${post.id}`;
             let title = post.title.length > 20 ? post.title.substring(0, 30) + '...' : post.title;
             let text = post.body.length > 200 ? post.body.substring(0, 500) + '...' : post.body;
             captions[index].innerHTML = `<strong>${title}</strong><br>${text}`;
@@ -79,3 +79,61 @@ dots.forEach((dot, dotPosition) => {
         updatePosition();
     });
 });
+
+// Fetch data API for blog feed
+fetch('https://v2.api.noroff.dev/blog/posts/poppy')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(responseData => {
+        const postsContainer = document.getElementById('posts-container');
+        const posts = responseData.data;
+
+        posts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.className = 'blog-post';
+
+            const titleElement = document.createElement('h4');
+            titleElement.className = 'blog-post-title';
+            titleElement.textContent = post.title;
+
+            const authorElement = document.createElement('p');
+            authorElement.className = 'blog-post-author';
+            authorElement.textContent = `By: ${post.author.name}`;
+
+            const dateElement = document.createElement('p');
+            dateElement.className = 'blog-post-date';
+            const date = new Date(post.created);
+            dateElement.textContent = `Published on: ${date.toLocaleDateString()}`;
+
+            const imgElement = document.createElement('img');
+            imgElement.src = post.media.url;
+            imgElement.alt = post.media.alt;
+            imgElement.addEventListener('click', () => {
+                window.location.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${post.id}`;
+            });
+
+            const bodyElement = document.createElement('p');
+            bodyElement.className = 'blog-post-body';
+            bodyElement.textContent = post.body;
+
+            const tagsElement = document.createElement('p');
+            tagsElement.className = 'blog-post-tags';
+            tagsElement.textContent = `Categories: ${post.tags.join(', ')}`;
+
+            postElement.appendChild(titleElement);
+            postElement.appendChild(imgElement);
+            postElement.appendChild(authorElement);
+            postElement.appendChild(dateElement);
+            postElement.appendChild(bodyElement);
+            postElement.appendChild(tagsElement);
+
+            postsContainer.appendChild(postElement);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching data: Blog posts not fetched', error);
+    });

@@ -1,0 +1,37 @@
+.static-latest-posts {
+    position: relative;
+    padding-bottom: 50px;
+}
+
+.static-latest-posts .background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 255, 255, 0.5);
+    z-index: 1;
+}
+
+.static-latest-posts .background-image {
+    background: url('https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_1280.png') repeat center center fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+h1 {
+    z-index: 20;
+    position: relative;
+    padding: 40px 0;
+    text-align: center;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    padding: 20px;
+}

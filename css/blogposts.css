@@ -6,30 +6,6 @@
     font-weight: 200;
 }
 
-.static-latest-posts {
-    position: relative;
-    padding-bottom: 50px;
-}
-
-.static-latest-posts .background-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 255, 255, 0.5);
-    z-index: 1;
-}
-
-.static-latest-posts .background-image {
-    background: url('https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_1280.png') repeat center center fixed;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
 
 h1 {
     z-index: 20;
@@ -48,6 +24,7 @@ h2 {
     padding: 0 40px;
     z-index: 20;
     position: relative;
+    margin: 5px;
 }
 
 select {
@@ -81,6 +58,16 @@ button:hover {
     background-color: white;
 }
 
+input {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
 .posts-container {
     position: relative;
     z-index: 2;
@@ -92,7 +79,6 @@ button:hover {
 
 .post {
     padding: 20px;
-    border: 1px solid #000000;
     border-radius: 5px;
     box-sizing: border-box;
     margin: 10px;
@@ -156,13 +142,28 @@ button:hover {
     color: #000000;
 }
 
-@media only screen and (max-width: 540px) {}
+@media only screen and (max-width: 900px) {
+    .posts-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-@media only screen and (max-width: 540px) {
-    .posts-container {}
+
+@media only screen and (max-width: 550px) {
+    .sort-filter-container {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .posts-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
 
     .post {
         height: 600px;
         width: 100%;
+        margin: 5px;
     }
 }
+

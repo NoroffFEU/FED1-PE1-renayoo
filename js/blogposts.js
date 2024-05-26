@@ -1,8 +1,12 @@
 const postsContainer = document.getElementById('posts-container');
 const sortDropdown = document.getElementById('sort-dropdown');
 const tagFilter = document.getElementById('category-filter'); // Use tagFilter for clarity
+const searchInput = document.getElementById('search');
+const paginationContainer = document.getElementById('pagination-container');
 
 let allPosts = [];
+const postsPerPage = 6;
+let currentPage = 1;
 
 // Function to display blog posts
 function createPostElement(post) {
@@ -53,8 +57,12 @@ function createPostElement(post) {
 
 // Function to display posts based on sorting and filtering
 function displayPosts(posts) {
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    const paginatedPosts = posts.slice(startIndex, endIndex);
+
     postsContainer.innerHTML = '';
-    posts.forEach(post => {
+    paginatedPosts.forEach(post => {
         const postElement = createPostElement(post);
         postsContainer.appendChild(postElement);
     });
@@ -94,23 +102,56 @@ async function fetchData() {
         // Display posts initially
         const sortedPosts = sortPosts(allPosts, sortDropdown.value);
         displayPosts(sortedPosts);
+        updatePagination(sortedPosts);
     } catch (error) {
         console.error('Error fetching data:', error);
         displayError('Cannot fetch blog posts.');
     }
 }
 
-// Event listeners for sorting and filtering
+// Function to update pagination controls
+function updatePagination(posts) {
+    const totalPages = Math.ceil(posts.length / postsPerPage);
+    paginationContainer.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.style.position = 'relative';
+        pageButton.style.zIndex = '20'; 
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            displayPosts(posts);
+            updatePagination(posts);
+        });
+        paginationContainer.appendChild(pageButton);
+    }
+}
+
+// Event listeners for sorting, filtering, and pagination
 sortDropdown.addEventListener('change', () => {
     const sortedPosts = sortPosts(allPosts, sortDropdown.value);
     const filteredPosts = filterPostsByTag(sortedPosts, tagFilter.value);
+    currentPage = 1; // Reset to first page when sorting
     displayPosts(filteredPosts);
+    updatePagination(filteredPosts);
 });
 
 tagFilter.addEventListener('change', () => {
     const sortedPosts = sortPosts(allPosts, sortDropdown.value);
     const filteredPosts = filterPostsByTag(sortedPosts, tagFilter.value);
+    currentPage = 1; // Reset to first page when filtering
     displayPosts(filteredPosts);
+    updatePagination(filteredPosts);
+});
+
+searchInput.addEventListener('input', () => {
+    const sortedPosts = sortPosts(allPosts, sortDropdown.value);
+    const filteredPosts = filterPostsByTag(sortedPosts, tagFilter.value);
+    const searchedPosts = searchPosts(filteredPosts, searchInput.value);
+    currentPage = 1; // Reset to first page when searching
+    displayPosts(searchedPosts);
+    updatePagination(searchedPosts);
 });
 
 // Call the fetchData function for posts
@@ -118,4 +159,10 @@ fetchData();
 
 function displayError(message) {
     postsContainer.innerHTML = `<p>${message}</p>`;
+}
+
+// Function to search posts by title
+function searchPosts(posts, searchText) {
+    const searchTerm = searchText.toLowerCase().trim();
+    return posts.filter(post => post.title.toLowerCase().includes(searchTerm));
 }

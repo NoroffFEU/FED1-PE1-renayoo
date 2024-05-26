@@ -62,22 +62,28 @@ function createPostElement(post) {
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
         deleteButton.classList.add('delete-post');
-        deleteButton.addEventListener('click', async () => {
-            try {
-                const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
-                    }
-                });
 
-                if (response.ok) {
-                    window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
-                } else {
-                    console.error('Failed to delete post:', await response.json());
+        // Delete button
+        deleteButton.addEventListener('click', async () => {
+            const isConfirmed = confirm('Are you sure you want to delete this post?');
+
+            if (isConfirmed) {
+                try {
+                    const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`
+                        }
+                    });
+
+                    if (response.ok) {
+                        window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
+                    } else {
+                        console.error('Failed to delete post:', await response.json());
+                    }
+                } catch (error) {
+                    console.error('Error deleting post:', error);
                 }
-            } catch (error) {
-                console.error('Error deleting post:', error);
             }
         });
 
@@ -85,31 +91,6 @@ function createPostElement(post) {
         postDiv.appendChild(deleteButton);
     }
 
-    return postDiv;
-}
-
-deleteButton.addEventListener('click', async () => {
-    const isConfirmed = window.confirm('Are you sure you want to delete this post?');
-    
-    if (isConfirmed) {
-        try {
-            const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            });
-
-            if (response.ok) {
-                window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
-            } else {
-                console.error('Failed to delete post:', await response.json());
-            }
-        } catch (error) {
-            console.error('Error deleting post:', error);
-        }
-    }
-});
 
 function getPostIdFromURL() {
     const params = new URLSearchParams(window.location.search);

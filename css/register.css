@@ -4,11 +4,9 @@ body {
     background-size: cover;
     min-height: 100vh;
 }
-
 main {
     min-height: 80dvh;
 }
-
 h1 {
     color: white;
     text-shadow: black;
@@ -19,7 +17,6 @@ h1 {
     width: 300px;
     margin: 50px auto;
 }
-
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -28,7 +25,6 @@ input[type="password"] {
     margin: 5px 0 20px 0;
     box-sizing: border-box;
 }
-
 input[type="submit"] {
     width: 100%;
     background-color: #4CAF50;
@@ -38,11 +34,9 @@ input[type="submit"] {
     border-radius: 5px;
     cursor: pointer;
 }
-
 input[type="submit"]:hover {
     background-color: #45a049;
 }
-
 .error-message {
     color: red;
 }

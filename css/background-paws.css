@@ -2,7 +2,6 @@
     position: relative;
     padding-bottom: 50px;
 }
-
 .static-latest-posts .background-overlay {
     position: absolute;
     top: 0;
@@ -12,7 +11,6 @@
     background-color: rgba(0, 255, 255, 0.5);
     z-index: 1;
 }
-
 .static-latest-posts .background-image {
     background: url('https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_1280.png') repeat center center fixed;
     position: absolute;
@@ -30,7 +28,6 @@ h1 {
     text-align: center;
     margin: 0;
 }
-
 h2 {
     text-align: center;
     padding: 20px;

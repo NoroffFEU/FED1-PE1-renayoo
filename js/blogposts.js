@@ -1,6 +1,6 @@
 const postsContainer = document.getElementById('posts-container');
 const sortDropdown = document.getElementById('sort-dropdown');
-const tagFilter = document.getElementById('category-filter'); // Use tagFilter for clarity
+const tagFilter = document.getElementById('category-filter');
 const searchInput = document.getElementById('search');
 const paginationContainer = document.getElementById('pagination-container');
 
@@ -118,7 +118,7 @@ function updatePagination(posts) {
         const pageButton = document.createElement('button');
         pageButton.textContent = i;
         pageButton.style.position = 'relative';
-        pageButton.style.zIndex = '20'; 
+        pageButton.style.zIndex = '20';
         pageButton.addEventListener('click', () => {
             currentPage = i;
             displayPosts(posts);

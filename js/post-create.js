@@ -15,8 +15,6 @@ document.getElementById('create-post-form').addEventListener('submit', function 
         return;
     }
 
-    console.log('Access Token:', accessToken);  // Debugging
-
     // Prepare data object
     const postData = {
         title: title,
@@ -28,10 +26,9 @@ document.getElementById('create-post-form').addEventListener('submit', function 
         tags: tags.split(',').map(tag => tag.trim()) // Split by comma and trim whitespace
     };
 
-    console.log('Post Data:', postData);  // Debugging
 
     // Send POST request to the API
-    fetch('https://v2.api.noroff.dev/blog/posts/poppy', {
+    fetch('https://v2.api.noroff.dev/blog/posts/', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${accessToken}`,

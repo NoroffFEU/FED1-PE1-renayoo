@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Check if the required fields are present
         if (post && post.id && post.title && post.body && post.media && post.media.url) {
-            console.log('All required fields are present!');
             document.getElementById('post-id').value = post.id;
             document.getElementById('title').value = post.title;
             document.getElementById('body').value = post.body;
@@ -111,7 +110,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             if (response.ok) {
-                console.log('Post deleted successfully');
                 window.alert('Post deleted successfully!');
                 window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
             } else {

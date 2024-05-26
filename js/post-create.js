@@ -47,7 +47,6 @@ document.getElementById('create-post-form').addEventListener('submit', function 
         })
         .then(data => {
             // Handle response data
-            console.log('Response:', data);
             alert('Post created successfully!');
             window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
         })

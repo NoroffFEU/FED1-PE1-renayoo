@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     throw new Error(responseData.body.message || "Can't register user");
                 }
                 // Handle successful response
-                console.log("User registered successfully:", responseData.body);
                 document.getElementById("successMessages").innerText = "User registered successfully!";
             })
             .catch(error => {

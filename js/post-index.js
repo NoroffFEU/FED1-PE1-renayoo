@@ -88,6 +88,29 @@ function createPostElement(post) {
     return postDiv;
 }
 
+deleteButton.addEventListener('click', async () => {
+    const isConfirmed = window.confirm('Are you sure you want to delete this post?');
+    
+    if (isConfirmed) {
+        try {
+            const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
+
+            if (response.ok) {
+                window.location.href = 'https://norofffeu.github.io/FED1-PE1-renayoo/';
+            } else {
+                console.error('Failed to delete post:', await response.json());
+            }
+        } catch (error) {
+            console.error('Error deleting post:', error);
+        }
+    }
+});
+
 function getPostIdFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get('id');

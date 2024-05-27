@@ -132,5 +132,14 @@ fetchData();
 
 // Go back button - navigates to previous page
 function goBack() {
-    window.history.back();
-}
+    window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+    
+    // Wait for the scroll animation to finish before going back in history
+    setTimeout(function() {
+        window.history.back();
+      }, 500); // Adjust the delay (in milliseconds) as needed
+    }

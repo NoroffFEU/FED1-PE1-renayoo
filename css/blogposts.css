@@ -114,6 +114,9 @@ button:hover {
     color: #000000;
 }
 
+#pagination-container {
+    margin: 20px;
+}
 @media only screen and (max-width: 900px) {
     .posts-container {
         grid-template-columns: repeat(2, 1fr);

@@ -85,6 +85,10 @@ button:hover {
     color: #000000;
 }
 
+#goBackBtn {
+    margin: 20px;
+}
+
 @media screen and (max-width: 768px) {
     .post-meta {
         text-align: center;

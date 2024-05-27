@@ -137,3 +137,25 @@ fetch('https://v2.api.noroff.dev/blog/posts/poppy')
     .catch(error => {
         console.error('Error fetching data: Blog posts not fetched', error);
     });
+
+// Get the button
+let mybutton = document.getElementById("scrollTopBtn");
+
+// When the user scrolls down from the top of the document, top button appears
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }

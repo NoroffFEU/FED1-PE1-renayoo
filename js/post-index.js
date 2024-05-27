@@ -129,3 +129,8 @@ async function fetchData() {
 
 // Call the fetchData function to retrieve and display the post
 fetchData();
+
+// Go back button - navigates to previous page
+function goBack() {
+    window.history.back();
+}

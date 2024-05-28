@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error fetching post data:', error);
     }
+
     //Edit post
     async function handleEditPost() {
         let tags = [];
@@ -84,6 +85,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Alert on successful editing
             window.alert('Editing saved successfully!');
+            // Redirect to the post ID to see changes in the post
+            window.location.href = `https://norofffeu.github.io/FED1-PE1-renayoo/post/index.html?id=${postId}`;
 
         } catch (error) {
             console.error("Error saving post: ", error);

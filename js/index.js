@@ -12,7 +12,7 @@ let imgPosition = 0;
 next.addEventListener('click', nextImg);
 prev.addEventListener('click', prevImg);
 
-// Fetch data API for carousel
+// Fetch API carousel
 async function fetchCarouselData() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/poppy');
@@ -79,7 +79,7 @@ dots.forEach((dot, dotPosition) => {
     });
 });
 
-// Fetch data API for blog feed
+// Fetch API blog feed
 async function fetchBlogPosts() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/poppy');
@@ -136,10 +136,10 @@ async function fetchBlogPosts() {
     }
 }
 
-// Get the button
+// Scrolling to top button
 let mybutton = document.getElementById("scrollTopBtn");
 
-// When the user scrolls down from the top of the document, top button appears
+// Button appears when scrolling down 20 
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
@@ -150,7 +150,7 @@ function scrollFunction() {
     }
 }
 
-// When the user clicks on the button, scroll to the top of the document
+// Click - Scrolling the page to top
 function topFunction() {
     window.scrollTo({
         top: 0,

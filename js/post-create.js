@@ -22,7 +22,7 @@ document.getElementById('create-post-form').addEventListener('submit', async fun
             url: mediaUrl,
             alt: mediaAlt
         },
-        tags: tags.split(',').map(tag => tag.trim()) // Split by comma and trim whitespace
+        tags: tags.split(',').map(tag => tag.trim()) // Tags split by comma and trim whitespace
     };
 
     try {

@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Buttons - Delete 
     const deleteButton = document.getElementById("delete-button");;
     deleteButton.addEventListener('click', async () => {
-        // Confirm deleting post
+        // Confirm deleting post alert
         const confirmation = window.confirm('Are you sure you want to delete this post?');
         if (!confirmation) return;
 

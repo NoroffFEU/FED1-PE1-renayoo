@@ -20,24 +20,24 @@ async function login(email, password) {
         localStorage.setItem('accessToken', accessToken);
 
 
-        // Hide login container and show logged-in message
+        // Hide login container - Logged in message with buttons appear
         document.getElementById('login-container').style.display = 'none';
         document.getElementById('logged-in-message').style.display = 'block';
 
-        // Display success message
+        // Success message being displayed after logging in
         const successMessage = document.getElementById('success-message');
         successMessage.textContent = 'You have now logged in. You can create posts, edit posts, delete posts or register a new admin.';
         successMessage.style.color = 'black';
 
-        // Show register button
+        // Show register button showing
         document.getElementById('register-button-logged-in').style.display = 'block';
     } catch (error) {
-        // Display error message
+        // Display error message if not being able to log in 
         const errorMessage = document.getElementById('error-message');
         errorMessage.textContent = error.message;
         errorMessage.style.color = 'red';
 
-        // Hide logged-in message
+        // Hide logged-in success message and buttons
         document.getElementById('logged-in-message').style.display = 'none';
         document.getElementById('register-button-logged-in').style.display = 'none';
     }
@@ -47,7 +47,7 @@ async function login(email, password) {
 window.onload = function () {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
-        // If access token is available, show logged-in message
+        // If access token is available, show logged-in success message
         document.getElementById('login-container').style.display = 'none';
         document.getElementById('logged-in-message').style.display = 'block';
         document.getElementById('success-message').textContent = 'You are already logged in. You can create posts, edit posts, delete posts or register a new admin.';
@@ -66,11 +66,11 @@ document.getElementById('login-form').addEventListener('submit', function (event
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // Call function with email and password
+    // Call function -  email and password
     login(email, password);
 });
 
-// Log out the user - remove access token
+// Log out the user - remove access token from local storage
 function logout() {
     localStorage.removeItem('accessToken');
 

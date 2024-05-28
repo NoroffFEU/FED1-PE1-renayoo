@@ -64,7 +64,7 @@ function createPostElement(post) {
         deleteButton.textContent = 'Delete';
         deleteButton.classList.add('delete-post');
 
-        // Event listener confirm deleting post
+        // Event listener confirm deleting post alert
         deleteButton.addEventListener('click', async () => {
             const isConfirmed = confirm('Are you sure you want to delete this post?');
             if (isConfirmed) {
@@ -93,12 +93,12 @@ function createPostElement(post) {
 
     return postDiv;
 }
-
+// Parameter ID
 function getPostIdFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get('id');
 }
-
+// Fetch API blog ID
 async function fetchData() {
     try {
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/poppy');

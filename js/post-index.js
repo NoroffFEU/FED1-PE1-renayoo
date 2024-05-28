@@ -1,5 +1,6 @@
 const postsContainer = document.getElementById('blogDetailsID');
 
+//Function to display post 
 function createPostElement(post) {
     const postDiv = document.createElement('div');
     postDiv.classList.add('post');
@@ -49,7 +50,6 @@ function createPostElement(post) {
     postDiv.appendChild(tags);
     postDiv.appendChild(shareableURL);
 
-
     // Check if user is logged in
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
@@ -64,11 +64,9 @@ function createPostElement(post) {
         deleteButton.textContent = 'Delete';
         deleteButton.classList.add('delete-post');
 
-        // Updated event listener with confirmation dialog
+        // Event listener confirm deleting post
         deleteButton.addEventListener('click', async () => {
-            // Display a confirmation dialog
             const isConfirmed = confirm('Are you sure you want to delete this post?');
-
             if (isConfirmed) {
                 try {
                     const response = await fetch(`https://v2.api.noroff.dev/blog/posts/poppy/${post.id}`, {
@@ -92,7 +90,7 @@ function createPostElement(post) {
         postDiv.appendChild(editButton);
         postDiv.appendChild(deleteButton);
     }
-    
+
     return postDiv;
 }
 
@@ -110,7 +108,7 @@ async function fetchData() {
         if (postId) {
             const post = data.data.find(p => p.id === postId);
             if (post) {
-                // Update the page title
+                // Show page title
                 document.title = `Pawfect: ${post.title}`;
 
                 const postElement = createPostElement(post);
@@ -124,13 +122,14 @@ async function fetchData() {
         }
     } catch (error) {
         console.error('Error fetching data:', error);
+        postsContainer.innerHTML = '<p>There was an error fetching the post data.</p>';
     }
 }
 
 // Call the fetchData function to retrieve and display the post
 fetchData();
 
-// Go back button - navigates to previous page
+// Go back button - navigates to the previous page
 function goBack() {
     window.history.back();
 }

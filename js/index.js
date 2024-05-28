@@ -13,14 +13,13 @@ next.addEventListener('click', nextImg);
 prev.addEventListener('click', prevImg);
 
 // Fetch data API for carousel
-fetch('https://v2.api.noroff.dev/blog/posts/poppy')
-    .then(response => {
+async function fetchCarouselData() {
+    try {
+        const response = await fetch('https://v2.api.noroff.dev/blog/posts/poppy');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.json();
-    })
-    .then(responseData => {
+        const responseData = await response.json();
         const posts = responseData.data.slice(0, 3);
         posts.forEach((post, index) => {
             imgs[index].src = post.media.url;
@@ -30,10 +29,10 @@ fetch('https://v2.api.noroff.dev/blog/posts/poppy')
             captions[index].innerHTML = `<strong>${title}</strong><br>${text}`;
             links[index].textContent = "Read More";
         });
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Error fetching data: Blog posts not fetched', error);
-    });
+    }
+}
 
 // Position for images
 function updatePosition() {
@@ -81,14 +80,13 @@ dots.forEach((dot, dotPosition) => {
 });
 
 // Fetch data API for blog feed
-fetch('https://v2.api.noroff.dev/blog/posts/poppy')
-    .then(response => {
+async function fetchBlogPosts() {
+    try {
+        const response = await fetch('https://v2.api.noroff.dev/blog/posts/poppy');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.json();
-    })
-    .then(responseData => {
+        const responseData = await response.json();
         const postsContainer = document.getElementById('posts-container');
         const posts = responseData.data;
 
@@ -133,10 +131,10 @@ fetch('https://v2.api.noroff.dev/blog/posts/poppy')
 
             postsContainer.appendChild(postElement);
         });
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Error fetching data: Blog posts not fetched', error);
-    });
+    }
+}
 
 // Get the button
 let mybutton = document.getElementById("scrollTopBtn");
@@ -150,12 +148,16 @@ function scrollFunction() {
     } else {
         mybutton.style.display = "none";
     }
-    }
+}
 
-    // When the user clicks on the button, scroll to the top of the document
-    function topFunction() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Call fetch functions
+fetchCarouselData();
+fetchBlogPosts();

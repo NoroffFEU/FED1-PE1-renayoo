@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error fetching post data:', error);
     }
-
+    //Edit post
     async function handleEditPost() {
         let tags = [];
         const tagsInput = document.getElementById('tags').value;

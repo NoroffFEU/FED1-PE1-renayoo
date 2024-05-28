@@ -126,7 +126,7 @@ function updatePagination(posts) {
             currentPage = i;
             displayPosts(posts);
             updatePagination(posts);
-            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scrolls to the top of the page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         paginationContainer.appendChild(pageButton);
     }
@@ -172,9 +172,3 @@ function searchPosts(posts, searchText) {
     const searchTerm = searchText.toLowerCase().trim();
     return posts.filter(post => post.title.toLowerCase().includes(searchTerm));
 }
-pageButton.addEventListener('click', () => {
-    currentPage = i;
-    displayPosts(posts);
-    updatePagination(posts);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scrolls to the top of the page
-});

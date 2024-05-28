@@ -1,5 +1,7 @@
 # FED1 Project Exam 1
 
+You will find the project board in the repository for this website on GitHub
+
 ## Pawfect Dog Blog.
 Link to blog: https://norofffeu.github.io/FED1-PE1-renayoo/index.html
 

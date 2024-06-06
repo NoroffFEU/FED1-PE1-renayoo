@@ -112,7 +112,7 @@ Thank you for considering contributing to this project! Here are the steps to ge
 
 # Need help?
     
-    If you have any questions or need assistance, feel free to open an issue on GitHub or reach out to the project maintainers.
+If you have any questions or need assistance, feel free to open an issue on GitHub or reach out to the project maintainers.
 
 ## Contact
 

@@ -118,7 +118,7 @@ If you have any questions or need assistance, feel free to open an issue on GitH
 
 This is where you can leave your social links for people to contact you, such as a LinkedIn profile or Twitter link e.g.
 
-[My Twitter page](www.twitter.com)
+- [My Twitter page]
 
-[My LinkedIn page](www.linkedin.com)
+- [My LinkedIn page]
 
